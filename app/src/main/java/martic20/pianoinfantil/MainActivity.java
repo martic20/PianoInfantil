@@ -12,7 +12,7 @@ import android.widget.MediaController;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements MediaController.MediaPlayerControl {
+public class MainActivity extends AppCompatActivity {
 
     private ImageView imatge1;
     private ImageView imatge2;
@@ -78,78 +78,9 @@ public class MainActivity extends AppCompatActivity implements MediaController.M
         so.stop();
     }
 
-    // Mètodes de l'activitat
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        controls.show();
-        return false;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         so.stop();
-        so.release();
     }
-
-    @Override
-    public void start() {
-        so.start();
-    }
-
-    @Override
-    public void pause() {
-        // Quan l'usuari toca el botó de pausa
-        so.pause();
-    }
-
-    @Override
-    public int getDuration() {
-        // Torna la durada de la pista d'audio
-        return so.getDuration();
-    }
-
-    @Override
-    public int getCurrentPosition() {
-        // Torna la posició actual a la pista d'audio
-        return so.getCurrentPosition();
-    }
-
-    @Override
-    public void seekTo(int pos) {
-        // Per anar a una posició de la pista
-        so.seekTo(pos);
-    }
-
-    @Override
-    public boolean isPlaying() {
-        // Torna cert quan s'està reproduint audio
-        return so.isPlaying();
-    }
-
-    @Override
-    public int getBufferPercentage() {
-        return 0;
-    }
-
-    @Override
-    public boolean canPause() {
-        return true;
-    }
-
-    @Override
-    public boolean canSeekBackward() {
-        return false;
-    }
-
-    @Override
-    public boolean canSeekForward() {
-        return false;
-    }
-
-    @Override
-    public int getAudioSessionId() {
-        return 0;
-    }
-
 }
